@@ -21,7 +21,7 @@ const scene = new THREE.Scene()
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
-const matcapTexture = textureLoader.load('textures/matcaps/8.png')
+const matcapTexture = textureLoader.load('textures/matcaps/3.png')
 
 /**
  * Sizes
@@ -51,8 +51,8 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 1
-camera.position.y = 1
+camera.position.x = -1
+camera.position.y = -0.5
 camera.position.z = 2
 scene.add(camera)
 
@@ -90,26 +90,19 @@ fontLoader.load(
                             font: font,
                             size: 0.5,
                             height: 0.2,
-                            curveSegments: 12,
-                            bevelEnabled: true,
-                            bevelThickness: 0.03,
-                            bevelSize: 0.02,
-                            bevelOffset: 0,
-                            bevelSegments: 5
-
                         }
                     )
-                    geometry.center()
+                    // geometry.center()
                     // Material
                     const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
 
                     const text = new THREE.Mesh(geometry, material)
-                    text.position.x = index * 0.3;
+                    text.position.x = (index - 10) * 0.3;
                     scene.add(text)
                     /**
                            * Animate
                            */
-                    gsap.to(text.scale, { duration: 1, delay: 1, z: 3 * Math.random(index), yoyo: true, repeat: -1, })
+                    gsap.to(text.scale, { duration: 3, delay: 1, z: 3 * Math.random(7), yoyo: true, repeat: -1, })
 
                 })//end foreach
             })
