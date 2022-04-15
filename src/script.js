@@ -5,6 +5,8 @@ import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
 AFRAME.registerComponent('mindar-image-target', {
+    schema: { type: 'string' },
+
     init: function () {
         // Do something when component first attached.
 
