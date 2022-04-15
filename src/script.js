@@ -76,10 +76,10 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 var fontLoader = new THREE.FontLoader();
 
 fontLoader.load(
-    '/fonts/cypher.json',
+    './fonts/cypher.json',
     (font) => {
         fontLoader.load(
-            '/fonts/cypher.json',
+            './fonts/cypher.json',
             (font) => {
                 // text
                 let sentence = "LE REEL S'ÉCRIT DANS LE VIRTUEL ".split(' ').join('').split('');
