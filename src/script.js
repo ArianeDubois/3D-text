@@ -4,12 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
-AFRAME.registerComponent('foo', {
-    schema: {
-        bar: { type: 'number' },
-        baz: { type: 'string' }
-    },
-
+AFRAME.registerComponent('mindar-image-target', {
     init: function () {
         // Do something when component first attached.
 
