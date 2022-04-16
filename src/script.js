@@ -38,6 +38,7 @@ exampleTarget.addEventListener("targetFound", event => {
     }
 
 
+    scene.background = 'trnansparent'
 
     /**
  * Lights
