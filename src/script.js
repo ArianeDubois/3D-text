@@ -75,7 +75,7 @@ gui.add(camera.position, 'x').min(0).max(1).step(0.001).name('posX')
 gui.add(camera.position, 'y').min(0).max(1).step(0.001).name('posY')
 gui.add(camera.position, 'z').min(0).max(1).step(0.001).name('posZ')
 
-document.querySelector('#example-target');// Controls
+conosle.log(document.querySelector('#example-target'));// Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
 
@@ -120,6 +120,7 @@ fontLoader.load(
             './fonts/cypher-A.json',
             (font) => {
                 // text
+
                 let sentence = "LlEeRrEeEeLmSw@xEeCeRyIzTuDpAaNpSjLlEeVbIdRhTDUaEeLk".split(' ').join('').split('');
                 sentence.forEach((letter, index) => {
                     let geometry = new THREE.TextBufferGeometry(
@@ -130,6 +131,7 @@ fontLoader.load(
                             height: 0.1,
                         }
                     )
+
                     geometry.center()
 
                     // Material
@@ -151,6 +153,7 @@ fontLoader.load(
                     gsap.to(text.scale, { duration: 3, delay: 1, z: 3 * Math.random(7), yoyo: true, repeat: -1, })
 
                 })//end foreach
+                gui.add(sentence.position, 'x').min(0).max(1).step(0.001).name('x')
 
                 const background = new THREE.MeshStandardMaterial({
                     color: 0x000000
