@@ -71,7 +71,11 @@ camera.position.y = -0.5
 camera.position.z = 2
 scene.add(camera)
 
-// Controls
+gui.add(camera.position, 'x').min(0).max(1).step(0.001).name('posX')
+gui.add(camera.position, 'y').min(0).max(1).step(0.001).name('posY')
+gui.add(camera.position, 'z').min(0).max(1).step(0.001).name('posZ')
+
+document.querySelector('#example-target');// Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
 
@@ -122,7 +126,7 @@ fontLoader.load(
                         letter,
                         {
                             font: font,
-                            size: 0.3,
+                            size: 0.5,
                             height: 0.1,
                         }
                     )
@@ -139,7 +143,6 @@ fontLoader.load(
                     text.position.x = (index - 25) * 0.18;
                     scene.add(text)
                     directionalLight.position.set(0.25, 3, - 2.25)
-                    gui.add(text.position, 'x').min(0).max(1).step(0.001).name('posX')
 
 
                     /**
