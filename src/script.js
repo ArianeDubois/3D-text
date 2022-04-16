@@ -9,14 +9,12 @@ import gsap, { random } from 'gsap'
 const exampleTarget = document.querySelector('#example-target');
 exampleTarget.addEventListener("targetFound", event => {
     alert(" found");
-
-
-
     /**
      * Base
      */
     // Debug
     const gui = new dat.GUI()
+    const debugObject = {}
 
     // Canvas
     const canvas = document.querySelector('canvas.webgl')
@@ -36,8 +34,6 @@ exampleTarget.addEventListener("targetFound", event => {
         width: window.innerWidth,
         height: window.innerHeight
     }
-
-
     scene.background = null
 
     /**
@@ -56,6 +52,21 @@ exampleTarget.addEventListener("targetFound", event => {
     directionalLight.shadow.normalBias = 0.05
     directionalLight.position.set(0.25, 3, - 2.25)
     scene.add(directionalLight)
+
+    debugObject.envMapIntensity = 5
+    gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
+
+    debugObject.frontRoughness = 0.1
+    gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+
+    debugObject.sideRoughness = 0.2
+    gui.add(debugObject, 'sideRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+
+    debugObject.frontMetalness = 0
+    gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+    debugObject.sideMetalness = 0
+    gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+
 
     window.addEventListener('resize', () => {
         // Update sizes
@@ -91,16 +102,62 @@ exampleTarget.addEventListener("targetFound", event => {
      */
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
-        alpha: true
+        alpha: true,
+        antialias: true
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0);
 
+
+
+    renderer.physicallyCorrectLights = true
+    renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.toneMapping = THREE.ReinhardToneMapping
+    renderer.toneMappingExposure = 3 //exposition
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
+
+    gui.add(renderer, 'toneMapping', {
+        No: THREE.NoToneMapping,
+        Linear: THREE.LinearToneMapping,
+        Reinhard: THREE.ReinhardToneMapping,
+        Cineon: THREE.CineonToneMapping,
+        ACESFilmic: THREE.ACESFilmicToneMapping
+    })
+        .onFinishChange(() => {
+            renderer.toneMapping = Number(renderer.toneMapping)
+            updateAllMaterials()
+        })
+    gui.add(renderer, 'toneMappingExposure').min(0).max(10).step(0.001)
     /**
      * Fonts
      */
 
+    const updateAllMaterials = () => {
+        scene.traverse((child) => {
+            console.log(child.material)
+
+            if (child.material) {
+
+                child.material.forEach(el => {
+                    el.envMapIntensity = debugObject.envMapIntensity
+                    el.needsUpdate = true
+                    el.roughness = debugObject.elRoughness
+
+                })
+                child.material[0].roughness = debugObject.frontRoughness
+                child.material[1].roughness = debugObject.sideRoughness
+                child.material[0].metalness = debugObject.frontMetalness
+                child.material[1].metalness = debugObject.sideMetalness
+                child.material.envMap = environmentMap
+
+            }
+            // child.castShadow = true
+            // child.receiveShadow = true
+        })
+    }
 
     var fontLoader = new THREE.FontLoader();
 
@@ -117,7 +174,7 @@ exampleTarget.addEventListener("targetFound", event => {
                             letter,
                             {
                                 font: font,
-                                size: 0.5,
+                                size: 0.3,
                                 height: 0.1,
                             }
                         )
