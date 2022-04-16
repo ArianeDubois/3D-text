@@ -75,7 +75,7 @@ gui.add(camera.position, 'x').min(0).max(1).step(0.001).name('posX')
 gui.add(camera.position, 'y').min(0).max(1).step(0.001).name('posY')
 gui.add(camera.position, 'z').min(0).max(1).step(0.001).name('posZ')
 
-conosle.log(document.querySelector('#example-target'));// Controls
+console.log(document.querySelector('#example-target'));// Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
 
@@ -153,8 +153,8 @@ fontLoader.load(
                     gsap.to(text.scale, { duration: 3, delay: 1, z: 3 * Math.random(7), yoyo: true, repeat: -1, })
 
                 })//end foreach
-                gui.add(sentence.position, 'x').min(0).max(1).step(0.001).name('x')
-
+                // gui.add(sentence.position, 'x').min(0).max(1).step(0.001).name('x')
+                console.log(sentence)
                 const background = new THREE.MeshStandardMaterial({
                     color: 0x000000
                 })
