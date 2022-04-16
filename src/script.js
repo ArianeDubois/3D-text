@@ -35,7 +35,7 @@ scene.background = null
 */
 const ambientLight = new THREE.AmbientLight()
 ambientLight.color = new THREE.Color(0xffffff)
-ambientLight.intensity = 0.1
+ambientLight.intensity = 0.7
 scene.add(ambientLight)
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001).name('ambientLight')
 
@@ -47,16 +47,16 @@ directionalLight.shadow.normalBias = 0.05
 directionalLight.position.set(0.25, 3, - 2.25)
 scene.add(directionalLight)
 
-// debugObject.envMapIntensity = 5
-// gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
+debugObject.envMapIntensity = 5
+gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
 
-// debugObject.frontRoughness = 0.1
-// gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+debugObject.frontRoughness = 0.1
+gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
-// debugObject.frontMetalness = 0
-// gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-// debugObject.sideMetalness = 0
-// gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+debugObject.frontMetalness = 0
+gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+debugObject.sideMetalness = 0
+gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
 
 window.addEventListener('resize', () => {
@@ -90,6 +90,24 @@ scene.add(camera)
 /**
  * Renderer
  */
+const updateAllMaterials = () => {
+    scene.traverse((child) => {
+        console.log(child.material)
+
+        if (child.material) {
+
+            child.material.forEach(el => {
+                // el.envMapIntensity = debugObject.envMapIntensity
+                el.needsUpdate = true
+                el.roughness = debugObject.elRoughness
+
+            })
+            child.material[0].roughness = debugObject.frontRoughness
+            child.material[0].metalness = debugObject.frontMetalness
+        }
+    })
+}
+
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,
@@ -120,23 +138,7 @@ renderer.setClearColor(0x000000, 0);
  * Fonts
  */
 
-// const updateAllMaterials = () => {
-//     scene.traverse((child) => {
-//         console.log(child.material)
 
-//         if (child.material) {
-
-//             child.material.forEach(el => {
-//                 // el.envMapIntensity = debugObject.envMapIntensity
-//                 el.needsUpdate = true
-//                 el.roughness = debugObject.elRoughness
-
-//             })
-//             child.material[0].roughness = debugObject.frontRoughness
-//             child.material[0].metalness = debugObject.frontMetalness
-//         }
-//     })
-// }
 
 var fontLoader = new THREE.FontLoader();
 
@@ -169,6 +171,10 @@ fontLoader.load(
                     const text = new THREE.Mesh(geometry, material)
                     text.position.x = (index - 25) * 0.18;
                     scene.add(text)
+                    directionalLight.position.set(0.25, 3, - 2.25)
+                    gui.add(text.position, 'x').min(0).max(1).step(0.001).name('posX')
+
+
                     /**
                            * Animate
                            */
