@@ -199,10 +199,10 @@ gui.add(renderer, 'toneMappingExposure').min(0).max(10).step(0.001)
 var fontLoader = new THREE.FontLoader();
 
 fontLoader.load(
-    '/fonts/cypher-A.json',
+    './fonts/cypher-A.json',
     (font) => {
         fontLoader.load(
-            '/fonts/cypher-A.json',
+            './fonts/cypher-A.json',
             (font) => {
                 // text
                 let sentence = "LlEeRrEeEeLmSw@xEeCeRyIzTuDpAaNpSjLlEeVbIdRhTDUaEeLk".split(' ').join('').split('');
@@ -260,7 +260,7 @@ const animate = () => {
     // Render
     renderer.render(scene, camera)
     // Update controls
-    controls.update()
+    // controls.update()
 
     // Call animate again on the next frame
     window.requestAnimationFrame(animate)
