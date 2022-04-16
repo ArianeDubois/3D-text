@@ -50,13 +50,13 @@ scene.add(directionalLight)
 // debugObject.envMapIntensity = 5
 // gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
 
-debugObject.frontRoughness = 0.1
-gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.frontRoughness = 0.1
+// gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
-debugObject.frontMetalness = 0
-gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-debugObject.sideMetalness = 0
-gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.frontMetalness = 0
+// gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.sideMetalness = 0
+// gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
 
 window.addEventListener('resize', () => {
@@ -120,23 +120,23 @@ renderer.setClearColor(0x000000, 0);
  * Fonts
  */
 
-const updateAllMaterials = () => {
-    scene.traverse((child) => {
-        console.log(child.material)
+// const updateAllMaterials = () => {
+//     scene.traverse((child) => {
+//         console.log(child.material)
 
-        if (child.material) {
+//         if (child.material) {
 
-            child.material.forEach(el => {
-                // el.envMapIntensity = debugObject.envMapIntensity
-                el.needsUpdate = true
-                el.roughness = debugObject.elRoughness
+//             child.material.forEach(el => {
+//                 // el.envMapIntensity = debugObject.envMapIntensity
+//                 el.needsUpdate = true
+//                 el.roughness = debugObject.elRoughness
 
-            })
-            child.material[0].roughness = debugObject.frontRoughness
-            child.material[0].metalness = debugObject.frontMetalness
-        }
-    })
-}
+//             })
+//             child.material[0].roughness = debugObject.frontRoughness
+//             child.material[0].metalness = debugObject.frontMetalness
+//         }
+//     })
+// }
 
 var fontLoader = new THREE.FontLoader();
 
