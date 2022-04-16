@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
-var scene = document.querySelector('a-scene');
+var scene = document.querySelector('a-entity');
 
 if (scene.hasLoaded) {
     run();
