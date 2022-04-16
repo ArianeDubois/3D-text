@@ -144,8 +144,6 @@ fontLoader.load(
                     text.position.x = (index - 25) * 0.18;
                     group.add(text);
 
-                    gui.add(text, 'scale').min(-10).max(10).step(0.001).name('scale')
-
                     directionalLight.position.set(0.25, 3, - 2.25)
 
                     gsap.to(text.scale, { duration: 3, delay: 1, z: 3 * Math.random(7), yoyo: true, repeat: -1, })
