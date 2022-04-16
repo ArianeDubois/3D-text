@@ -7,7 +7,7 @@ import gsap, { random } from 'gsap'
 // detect target found
 const target = document.querySelectorAll('.target').forEach(el => {
     console.log(el)
-    console.log(el.classList.contains('example-target'))
+    console.log(el.classList.contains('example-target-1'))
     el.addEventListener("targetFound", event => {
         if (el.classList.contains('example-target')) {
             alert("1-found");
@@ -20,6 +20,9 @@ const target = document.querySelectorAll('.target').forEach(el => {
         }
         if (el.classList.contains('example-target-4')) {
             alert("4-found");
+        }
+        if (el.classList.contains('example-target-5')) {
+            alert("5-found");
         }
     })
 });
