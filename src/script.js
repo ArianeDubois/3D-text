@@ -1,6 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
@@ -43,7 +43,7 @@ const ambientLight = new THREE.AmbientLight()
 ambientLight.color = new THREE.Color(0xffffff)
 ambientLight.intensity = 0.1
 scene.add(ambientLight)
-gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001).name('ambientLight')
+// gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001).name('ambientLight')
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
 directionalLight.castShadow = true
@@ -53,19 +53,19 @@ directionalLight.shadow.normalBias = 0.05
 directionalLight.position.set(0.25, 3, - 2.25)
 scene.add(directionalLight)
 
-gui.add(directionalLight, 'intensity').min(0).max(10).step(0.001).name('lightIntensity')
-gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001).name('lightX')
-gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001).name('lightY')
-gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001).name('lightZ')
+// gui.add(directionalLight, 'intensity').min(0).max(10).step(0.001).name('lightIntensity')
+// gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001).name('lightX')
+// gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001).name('lightY')
+// gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001).name('lightZ')
 // gui.add(directionalLight.shadow.mapSize, 'x').min(30).max(3000).step(0.001).name('shadowX')
 // gui.add(directionalLight.shadow.mapSize, 'y').min(- 5).max(5).step(0.001).name('shadowY')
 
 
 //reflexion use the color of the floor
-const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3)
-scene.add(hemisphereLight)
-const hemisphere = gui.addFolder('Hemisphere');
-hemisphere.add(hemisphereLight, 'intensity').min(0).max(1).step(0.001).name('hemisphereLight')
+// const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3)
+// scene.add(hemisphereLight)
+// const hemisphere = gui.addFolder('Hemisphere');
+// hemisphere.add(hemisphereLight, 'intensity').min(0).max(1).step(0.001).name('hemisphereLight')
 
 
 /**
@@ -78,7 +78,7 @@ const updateAllMaterials = () => {
         if (child.material) {
 
             child.material.forEach(el => {
-                el.envMapIntensity = debugObject.envMapIntensity
+                // el.envMapIntensity = debugObject.envMapIntensity
                 el.needsUpdate = true
                 el.roughness = debugObject.elRoughness
 
@@ -109,22 +109,22 @@ const updateAllMaterials = () => {
 
 // environmentMap.encoding = THREE.sRGBEncoding
 
-scene.background = 'trnansparent'
+scene.background = 'transparent'
 // scene.environment = environmentMap
 
-debugObject.envMapIntensity = 5
-gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
+// debugObject.envMapIntensity = 5
+// gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
 
-debugObject.frontRoughness = 0.1
-gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.frontRoughness = 0.1
+// gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
-debugObject.sideRoughness = 0.2
-gui.add(debugObject, 'sideRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.sideRoughness = 0.2
+// gui.add(debugObject, 'sideRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
-debugObject.frontMetalness = 0
-gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-debugObject.sideMetalness = 0
-gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.frontMetalness = 0
+// gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
+// debugObject.sideMetalness = 0
+// gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
 
 
 
@@ -156,9 +156,9 @@ camera.position.y = -0.5
 camera.position.z = 2
 scene.add(camera)
 
-// Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
+// // Controls
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
 
 /**
  * Renderer
