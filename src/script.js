@@ -47,18 +47,6 @@ directionalLight.shadow.normalBias = 0.05
 directionalLight.position.set(0.25, 3, - 2.25)
 scene.add(directionalLight)
 
-debugObject.envMapIntensity = 5
-gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
-
-debugObject.frontRoughness = 0.1
-gui.add(debugObject, 'frontRoughness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-
-debugObject.frontMetalness = 0
-gui.add(debugObject, 'frontMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-debugObject.sideMetalness = 0
-gui.add(debugObject, 'sideMetalness').min(0).max(1).step(0.0001).onChange(updateAllMaterials)
-
-
 window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
@@ -86,27 +74,6 @@ scene.add(camera)
 // Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
-
-/**
- * Renderer
- */
-const updateAllMaterials = () => {
-    scene.traverse((child) => {
-        console.log(child.material)
-
-        if (child.material) {
-
-            child.material.forEach(el => {
-                // el.envMapIntensity = debugObject.envMapIntensity
-                el.needsUpdate = true
-                el.roughness = debugObject.elRoughness
-
-            })
-            child.material[0].roughness = debugObject.frontRoughness
-            child.material[0].metalness = debugObject.frontMetalness
-        }
-    })
-}
 
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
