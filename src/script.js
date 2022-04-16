@@ -23,13 +23,11 @@ exampleTarget.addEventListener("targetFound", event => {
 
     // Scene
     const scene = new THREE.Scene()
-    scene.background = 'transparent'
 
     /**
      * Textures
      */
     const textureLoader = new THREE.TextureLoader()
-    const matcapTexture = textureLoader.load('textures/matcaps/3.png')
 
     /**
      * Sizes
@@ -38,6 +36,26 @@ exampleTarget.addEventListener("targetFound", event => {
         width: window.innerWidth,
         height: window.innerHeight
     }
+
+    scene.background = 'transparent'
+
+
+    /**
+ * Lights
+ */
+    const ambientLight = new THREE.AmbientLight()
+    ambientLight.color = new THREE.Color(0xffffff)
+    ambientLight.intensity = 0.1
+    scene.add(ambientLight)
+    gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001).name('ambientLight')
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+    directionalLight.castShadow = true
+    directionalLight.shadow.camera.far = 15
+    directionalLight.shadow.mapSize.set(2024, 2024)
+    directionalLight.shadow.normalBias = 0.05
+    directionalLight.position.set(0.25, 3, - 2.25)
+    scene.add(directionalLight)
 
     window.addEventListener('resize', () => {
         // Update sizes
