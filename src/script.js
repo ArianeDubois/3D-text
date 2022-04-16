@@ -1,6 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
@@ -87,7 +87,7 @@ const updateAllMaterials = () => {
             child.material[1].roughness = debugObject.sideRoughness
             child.material[0].metalness = debugObject.frontMetalness
             child.material[1].metalness = debugObject.sideMetalness
-            child.material.envMap = environmentMap
+            // child.material.envMap = environmentMap
 
         }
         // child.castShadow = true
@@ -98,19 +98,19 @@ const updateAllMaterials = () => {
 
 //  Environment map
 
-const environmentMap = cubeTextureLoader.load([
-    './textures/envMap/0/px.jpg',
-    './textures/envMap/0/nx.jpg',
-    './textures/envMap/0/py.jpg',
-    './textures/envMap/0/ny.jpg',
-    './textures/envMap/0/pz.jpg',
-    './textures/envMap/0/nz.jpg'
-])
+// const environmentMap = cubeTextureLoader.load([
+//     './textures/envMap/0/px.jpg',
+//     './textures/envMap/0/nx.jpg',
+//     './textures/envMap/0/py.jpg',
+//     './textures/envMap/0/ny.jpg',
+//     './textures/envMap/0/pz.jpg',
+//     './textures/envMap/0/nz.jpg'
+// ])
 
-environmentMap.encoding = THREE.sRGBEncoding
+// environmentMap.encoding = THREE.sRGBEncoding
 
 scene.background = 'trnansparent'
-scene.environment = environmentMap
+// scene.environment = environmentMap
 
 debugObject.envMapIntensity = 5
 gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAllMaterials)
