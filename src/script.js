@@ -4,9 +4,26 @@ import * as THREE from 'three'
 import * as dat from 'dat.gui'
 import gsap, { random } from 'gsap'
 
-
 // detect target found
-const exampleTarget = document.querySelector('#example-target-1');
+// const target = document.querySelectorAll('.target').forEach(el => {
+//     console.log(el.classList.contains('example-target-1'))
+//     el.addEventListener("targetFound", event => {
+//         if (el.classList.contains('example-target-1')) {
+//             alert("1-found");
+//         }
+//         if (el.classList.contains('example-target-2')) {
+//             alert("2-found");
+//         }
+//         if (el.classList.contains('example-target-3')) {
+//             alert("3-found");
+//         }
+//         if (el.classList.contains('example-target-4')) {
+//             alert("4-found");
+//         }
+//         if (el.classList.contains('example-target-4')) {
+//             alert("5-found");
+// }
+const exampleTarget = document.querySelector('#example-target');
 exampleTarget.addEventListener("targetFound", event => {
     alert("1-found");
     /**
@@ -144,8 +161,6 @@ exampleTarget.addEventListener("targetFound", event => {
                         text.position.x = (index - 25) * 0.18;
                         group.add(text);
 
-                        gui.add(text, 'scale').min(-10).max(10).step(0.001).name('scale')
-
                         directionalLight.position.set(0.25, 3, - 2.25)
 
                         gsap.to(text.scale, { duration: 3, delay: 1, z: 3 * Math.random(7), yoyo: true, repeat: -1, })
@@ -192,7 +207,9 @@ exampleTarget.addEventListener("targetFound", event => {
     animate()
 });
 
-// etect target lost
-exampleTarget.addEventListener("targetLost", event => {
-    alert("target lost");
-});
+// });
+
+// // etect target lost
+// exampleTarget.addEventListener("targetLost", event => {
+//     alert("target lost");
+// });
