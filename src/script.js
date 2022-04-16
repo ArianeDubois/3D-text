@@ -8,7 +8,7 @@ import gsap, { random } from 'gsap'
 // detect target found
 const exampleTarget = document.querySelector('#example-target');
 exampleTarget.addEventListener("targetFound", event => {
-    alert("target found");
+    alert(" found");
 
 
 
@@ -38,7 +38,7 @@ exampleTarget.addEventListener("targetFound", event => {
     }
 
 
-    scene.background = 'trnansparent'
+    scene.background = 'transparent'
 
     /**
  * Lights
