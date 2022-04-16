@@ -38,7 +38,7 @@ exampleTarget.addEventListener("targetFound", event => {
     }
 
 
-    scene.background = 'transparent'
+    scene.background = null
 
     /**
  * Lights
@@ -90,10 +90,12 @@ exampleTarget.addEventListener("targetFound", event => {
      * Renderer
      */
     const renderer = new THREE.WebGLRenderer({
-        canvas: canvas
+        canvas: canvas,
+        alpha: true
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.setClearColor(0x000000, 0);
 
     /**
      * Fonts
